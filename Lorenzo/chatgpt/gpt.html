@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eugene GPT</title>
+    <title>Lorenzo GPT</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -106,7 +106,7 @@
     </style>
 </head>
 <body>
-    <header>Eugene GPT AI</header>
+    <header>Lorenzo GPT AI</header>
     <div id="chat-container"></div>
     <div id="bottom-box">
         <input type="text" id="user-input" placeholder="Type your message...">
@@ -136,9 +136,9 @@
                     hideTypingIndicator();
 
                     const Eugene = data.answer || 'Sorry, I couldn\'t understand that.';
-                    addMessage('Eugene GPT', Eugene, 'eugene-message');
+                    addMessage('Lorenzo GPT', Lorenzo, 'Lorenzo-message');
                     chatHistory.push({ sender: 'User', message: userMessage });
-                    chatHistory.push({ sender: 'Eugene GPT', message: Eugene });
+                    chatHistory.push({ sender: 'Lorenzo GPT', message: Eugene });
                 })
                 .catch(error => {
                     hideTypingIndicator();
@@ -149,7 +149,7 @@
         function showTypingIndicator() {
             const typingIndicator = document.createElement('div');
             typingIndicator.className = 'message typing-indicator';
-            typingIndicator.innerHTML = 'Eugene is Typing...';
+            typingIndicator.innerHTML = '📝 |  Lorenzo is typing pls wait..';
             chatContainer.appendChild(typingIndicator);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
