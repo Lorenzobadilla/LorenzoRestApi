@@ -6,12 +6,12 @@ const moment = require("moment-timezone");
 
 
 const welcomeAnimation = () => {
-  const welcomeMessage = "[ WELCOME ] → Welcome to my simple API";
+  const welcomeMessage = "[ WELCOME ] → Welcome to my REST API |";
   const currentDate = moment.tz('Asia/Manila').format('dddd, D/MM/YYYY ');
   const currentTime = moment.tz('Asia/Manila').format('h:mm A');
   const category = "\nAnimation";
   const additionalInfo = `\nDate: ${currentDate}\nTime: ${currentTime}`;
-  const credits = "\nCredits: Eugene Aguilar"; 
+  const credits = "\nCredits: Lorenzo C. Badilla"; 
   let i = 0;
   const interval = setInterval(() => {
     if (i < welcomeMessage.length) {
