@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugene GPT</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100vh;
+            position:  relative;
+        }
+
+        @font-face {
+            font-family: 'OriginTech';
+            src: url('/OriginTech-personal-use-1.ttf') format('truetype');
+        }
+
+        header {
+            font-family: 'OriginTech', sans-serif;
+            background-color: #2478ed;
+            padding: 13px;
+            text-align: center;
+            font-size: 35px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left:0;
+
+        }
+
+        #chat-container {
+            max-height: 70vh;
+            overflow-y: scroll;
+            border: 2px solid #2478ed;
+            border-radius: 15px;
+            margin: 20px;
+            padding: 15px;
+            background-color: #34495e;
+            width: 80%;
+            align-self: flex-start;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .user-message {
+            background-color: #2478ed;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        .eugene-message {
+            background-color: #2ecc71;
+            color: #fff;
+            align-self: flex-start;
+        }
+
+        .typing-indicator {
+            color: #fff;
+        }
+
+        #bottom-box {
+            width: 90%;
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-self: flex-end;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #2478ed;
+            border-radius: 8px;
+            color: #fff;
+            background-color: #34495e;
+            margin-right: 10px;
+        }
+
+        #send-button {
+            padding: 15px;
+            background-color: #2478ed;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #send-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>Eugene GPT AI</header>
+    <div id="chat-container"></div>
+    <div id="bottom-box">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        let chatHistory = [];
+
+        function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (!userMessage) return;
+
+            addMessage('User', userMessage, 'user-message');
+            userInput.value = '';
+
+            // Show Typing... indicator
+            showTypingIndicator();
+
+            // Make API request
+            fetch(`/hercai?ask=${encodeURIComponent(userMessage)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Hide Typing... indicator
+                    hideTypingIndicator();
+
+                    const Eugene = data.answer || 'Sorry, I couldn\'t understand that.';
+                    addMessage('Eugene GPT', Eugene, 'eugene-message');
+                    chatHistory.push({ sender: 'User', message: userMessage });
+                    chatHistory.push({ sender: 'Eugene GPT', message: Eugene });
+                })
+                .catch(error => {
+                    hideTypingIndicator();
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        function showTypingIndicator() {
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message typing-indicator';
+            typingIndicator.innerHTML = 'Eugene is Typing...';
+            chatContainer.appendChild(typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            // Remove the last child assuming it's the typing indicator
+            const lastChild = chatContainer.lastChild;
+            if (lastChild && lastChild.classList.contains('typing-indicator')) {
+                chatContainer.removeChild(lastChild);
+            }
+        }
+
+        function addMessage(sender, message, messageClass) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${messageClass}`;
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>

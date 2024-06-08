@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastebin Uploader</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 80%;
+  max-width: 600px;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#response {
+  margin-top: 20px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pastebin Uploader</h2>
+
+  <form id="uploadForm">
+    <label for="code">Enter your code:</label>
+    <textarea id="code" name="code" rows="10" cols="50"></textarea>
+    <button type="submit">Upload</button>
+  </form>
+
+  <div id="response"></div>
+</div>
+
+<script>
+document.getElementById("uploadForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const code = document.getElementById("code").value;
+
+  try {
+    const response = await fetch(`/pastebin?code=${encodeURIComponent(code)}`);
+    const data = await response.json();
+
+    if (response.ok) {
+      document.getElementById("response").innerText = "Upload successful! Here is the link: " + data.url;
+    } else {
+      document.getElementById("response").innerText = "Upload failed. Error: " + data.error;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    document.getElementById("response").innerText = "An error occurred. Please try again later.";
+  }
+});
+</script>
+
+</body>
+</html>
