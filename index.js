@@ -1,5 +1,5 @@
 const express = require("express");
-const router = require("./eugene");
+const router = require("./Lorenzo");
 const config = require("./config.json");
 global.config = config;
 const path = require("path");
@@ -14,16 +14,16 @@ app.use(router);
 const port = config.port;
 
 app.get("/", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/contact.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/contact.html"));
 });
 
 app.get("/docs", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/docs.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/docs.html"));
 });
 
 app.get("/token/html", async function (req, res) {
   try {
-    res.sendFile(path.join(__dirname, "eurix/token/get.html"));
+    res.sendFile(path.join(__dirname, "Lorenzo/token/get.html"));
   } catch (error) {
     return res.json({ error: "no router not found" });
   }
@@ -31,7 +31,7 @@ app.get("/token/html", async function (req, res) {
 
 app.get("/stalk/html", async function (req, res) {
   try {
-    res.sendFile(path.join(__dirname, "eurix/docs/stalk.html"));
+    res.sendFile(path.join(__dirname, "Lorenzo/docs/stalk.html"));
   } catch (error) {
     return res.json({ error: "router not found" });
   }
@@ -39,19 +39,19 @@ app.get("/stalk/html", async function (req, res) {
 
 
 app.get("/shoti/html", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/docs/shoti.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/docs/shoti.html"));
 });
 
 app.get("/pastebin/html", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/pastebin/paste.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/pastebin/paste.html"));
 });
 
 app.get("/chatgpt/html", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/chatgpt/gpt.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/chatgpt/gpt.html"));
 });
 
 app.get("*", async function (req, res) {
-  res.sendFile(path.join(__dirname, "eurix/404.html"));
+  res.sendFile(path.join(__dirname, "Lorenzo/404.html"));
 });
 
 app.listen(port, () => {
