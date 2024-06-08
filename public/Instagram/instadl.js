@@ -78,4 +78,4 @@ async function igdl(url) {
   return result;
 }
 
-const author = "Eugene Aguilar";
+const author = "Lorenzo C. Badilla";
