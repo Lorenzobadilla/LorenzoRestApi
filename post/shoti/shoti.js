@@ -4,7 +4,7 @@ exports.name = "/shoti";
 exports.index = async (req, res) => {
   try {
     const response = await axios.post(
-      `https://shoti-srv1.onrender.com/api/v1/get`,`https://shoti-srv2-itslibyzxy0.koyeb.app/api/v1/request-f`,
+      `https://shoti-srv1.onrender.com/api/v1/get`,
       { apikey: global.config.shoti },
     );
     const username = response.data.data.user.username;
