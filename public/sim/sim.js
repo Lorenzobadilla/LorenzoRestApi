@@ -17,7 +17,7 @@ exports.index = async (req, res) => {
     }
 
     return res.json({
-      respond: "🚀 | Currently, I have no response for that yet, but you can kindly teach me."
+      respond: "I'm sorry, I don't have a response for that."
     });
   } catch (err) {
     console.error(err);
