@@ -22,9 +22,13 @@ const id = videoid.split(".")[0];
         url: url,
         username: username,
         nickname: nickname,
+        region: String,
+       url: URL,
+        cover: URL,
         title: title,
         userid: userid,
         videoid: id,
+        duration: String,
       },
     });
     console.log(response.data);
