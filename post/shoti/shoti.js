@@ -19,16 +19,12 @@ const id = videoid.split(".")[0];
       msg: "success",
       author: "Lorenzo",
       data: {
-        url: url,
         username: username,
         nickname: nickname,
-        region: String,
-       url: URL,
-        cover: URL,
         title: title,
-        userid: userid,
-        videoid: id,
-        duration: String,
+        userId: userid,
+        video: id,
+        url: url,
       },
     });
     console.log(response.data);
