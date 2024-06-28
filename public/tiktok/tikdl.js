@@ -33,7 +33,7 @@ const images = response.data.data.images;
         comment: comment,
         share: share,
         images: images,
-        developer: "Eugene Aguilar",
+        developer: "Lorenzo Badilla",
       }
     });
   } catch (error) {
