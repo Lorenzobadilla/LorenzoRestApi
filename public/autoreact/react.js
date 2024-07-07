@@ -7,6 +7,11 @@ exports.index = async function (req, res) {
     } else {
       if (
         react.includes("haha") ||
+        react.includes("bayot") ||
+        react.includes("paiyot") ||
+        react.includes("tangina") ||
+        react.includes("👍") ||
+        react.includes("pwede pa kiss") ||
         react.includes("lol") ||
         react.includes("lmao") ||
         react.includes("abno") ||
@@ -24,6 +29,8 @@ exports.index = async function (req, res) {
         res.json({ react: "😆" });
       } else if (
         react.includes("game") ||
+        react.includes("laro") ||
+        react.includes("laro sa kama") ||
         react.includes("cod") ||
         react.includes("valorant") ||
         react.includes("roblox") ||
@@ -59,6 +66,9 @@ exports.index = async function (req, res) {
         res.json({ react: "💤" });
       } else if (
         react.includes("love") ||
+        react.includes("ugh") ||
+        react.includes("lorenzo") ||
+        react.includes("ganda") ||
         react.includes("puke") ||
         react.includes("romantic") ||
         react.includes("finger") ||
@@ -69,7 +79,7 @@ exports.index = async function (req, res) {
       } else if (react.includes("juice")) {
         res.json({ react: "🍹" });
       } else {
-        res.json({ react: "❓" });
+        res.json({ react: "❔" });
       }
     }
   } catch (error) {
