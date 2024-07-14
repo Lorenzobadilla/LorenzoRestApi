@@ -4,7 +4,7 @@ const fs = require("fs");
 exports.name = "/api/joke";
 exports.index = async function (req, res) {
     try {
-        const joke = JSON.parse(fs.readFileSync('./joke.json'));
+        const joke = JSON.parse(fs.readFileSync('data/joke.json'));
         const data = joke[Math.floor(Math.random() * joke.length)];
         return res.json({
             joke: data

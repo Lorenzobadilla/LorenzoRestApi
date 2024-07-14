@@ -4,7 +4,7 @@ const fs = require("fs");
 exports.name = "/api/pickupline";
 exports.index = async function (req, res) {
     try {
-        const pickupline = JSON.parse(fs.readFileSync('./pickupline.json'));
+        const pickupline = JSON.parse(fs.readFileSync('data/pickupline.json'));
         const data = pickupline[Math.floor(Math.random() * pickupline.length)];
         return res.json({
             pickupline: data
