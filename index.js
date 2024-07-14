@@ -57,3 +57,5 @@ app.get("*", async function (req, res) {
 app.listen(port, () => {
   console.log(chalk.hex('#ffcc00')(`Your app is listening on port ${port}`));
 });
+
+module.exports = app
